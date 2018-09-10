@@ -1,0 +1,122 @@
+
+	<!--Navbar -->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#/listofBlog">MailBook</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#/listofBlog">Home</a></li>
+
+					<li class="dropdown" data-ng-show="currentUser"><a
+						class="dropdown-toggle" data-toggle="dropdown" href="">Blogs <span
+							class="caret"></span></a>
+
+						<ul class="dropdown-menu">
+							<li
+								data-ng-show="currentUser.role=='ADMIN' || currentUser.role=='EMPLOYEE'"><a
+								href="#/addNew">Add new Post</a></li>
+							<li><a href="#/listofBlog">Blog List</a></li>
+
+						</ul></li>
+
+					<li class="dropdown" data-ng-show="currentUser"><a
+						class="dropdown-toggle" data-toggle="dropdown" href="">Friends
+							<span class="caret"></span>
+					</a>
+
+						<ul class="dropdown-menu">
+							<li data-ng-show="currentUser"><a href="#/friendList">FriendsList</a></li>
+							<li><a href="#/userList">Search Friends</a></li>
+
+						</ul></li>
+
+					<li class="dropdown" data-ng-show="currentUser"><a
+						class="dropdown-toggle" data-toggle="dropdown" href="">Jobs <span
+							class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/listOfJobs">Jobs List</a></li>
+							<li><a href="">View Applied Jobs</a></li>
+							<li
+								data-ng-show="currentUser.role=='ADMIN' || currentUser.role=='EMPLOYEE'"><a
+								href="#/addJob">Post New Job</a></li>
+						</ul></li>
+					<li data-ng-show="currentUser"><a href="">Events</a></li>
+					<li><a href="#/chatPage">Chat</a></li>
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown" data-ng-if="currentUser.role=='ADMIN'|| currentUser.role=='EMPLOYEE'|| currentUser.role=='STUDENT'"><a href=""
+						class="dropdown-toggle" data-toggle="dropdown"><img  id="img1" class="avatar" src="http://localhost:8081/Collaboration/getImg/{{currentUser.emailId}}"
+						   width="40" height="40"></img>{{currentUser.fName +" "
+							+currentUser.lName}}<span class="caret"></span></a>
+
+						<ul class="dropdown-menu">
+							<li data-ng-show="currentUser"><a href="">View Profile</a></li>
+							<li><a href="" data-toggle="modal" data-target="#myModal">Upload
+									Profile Pic</a></li>
+
+						</ul>
+					</li>
+					<li data-ng-hide="currentUser"><a href="#/register"><span
+							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li data-ng-hide="currentUser"><a href="#/login"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					<li data-ng-show="currentUser"><a type="button" href=""
+						data-ng-click="logout()"><span
+							class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+
+				</ul>
+			<!-- end -->
+			</div>
+		</div>
+	</nav>
+
+	<!-- End Navbar -->
+
+	<!-- 	Upload Profile Picture -->
+	<!-- Popup View Section -->
+	<div class="modal fade" id="myModal" role="dialog"
+		style="margin-top: 69px">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Upload Profile</h4>
+				</div>
+				<div class="modal-body">
+					<form name="myForm" method="post"
+						action="http://localhost:8081/Collaboration/doUpload"
+						enctype="multipart/form-data" style="text-align: center;">
+						<div class="row uniform">
+							<div class="12u$ 12u$(small)">
+								<input type="text" value="Upload Profile Picture" disabled
+									style="text-align: center;" />
+							</div>
+
+							<!-- Break -->
+							<div class="12u$ 12u$(small)">
+								<input type="file" name="fileUpload" size="50" />
+							</div>
+							<br>
+							<!-- Break -->
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-default">Upload</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- Popup View Section-->
+
